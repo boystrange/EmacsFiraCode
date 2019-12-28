@@ -56,7 +56,7 @@ In case you want to add new ligatures or remove unwanted ones:
 
 1. Update [ligs.in](ligs.in) by removing the lines with the unwanted
    ligatures or by adding new ones.
-2. Make sure you have GHC installed and run `make` to compile
+2. Make sure you have GHC installed, run `make` to compile
    [ligs.hs](ligs.hs) and obtain the updated composition table.
 3. Replace the composition table in your `.emacs` file as described
    in the previous section.
