@@ -45,7 +45,7 @@ For those who want to enable (almost) all the ligatures:
    (124 . ".\\(?:\\(?:[>}]\\|->\\|-\\|=>\\|=\\|]\\||\\(?:[=>]\\|-\\||>\\)\\||\\)\\)") ;; |
    (126 . ".\\(?:\\(?:[=>@]\\|-\\|~>\\|~\\)\\)") ;; ~
    ```
-3. Restart Emacs and open the file `ligs.txt` and check whether the
+3. Restart Emacs, open the file `ligs.txt` and check whether the
    ligatures show up correctly.
 
 ## Custom setup
