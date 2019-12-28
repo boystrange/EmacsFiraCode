@@ -70,7 +70,7 @@ regex ws = maygroup (map aux (split ws))
     aux :: (Char, [String]) -> String
     aux (c, [""]) = esc c
     aux (c, [s]) = esc c ++ regex [s]
-    aux (c, vs) | any null vs = esc c ++ regex (filter (not . null) vs) ++ "\\\\|" ++ esc c
+    aux (c, vs) | any null vs = shygroup (esc c ++ regex (filter (not . null) vs) ++ "\\\\|" ++ esc c)
     aux (c, vs) = esc c ++ regex (filter (not . null) vs)
 
 rhs :: [String] -> String
@@ -86,7 +86,7 @@ putEntry (n, s) = putStrLn $ "(" ++ show n ++ " . \"" ++ s ++ "\") ;; " ++ [chr 
 
 main :: IO ()
 main = do
-  s <- readFile "ligs.txt"
+  s <- getContents
   let ligs = groupBy eqf (sort $ lines s)
   let tab = table ligs
   forM_ tab putEntry

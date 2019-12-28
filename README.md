@@ -15,36 +15,7 @@ For those who want to enable (almost) all the ligatures:
 
 1. Refer to the workaround described
    [here](https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-composition-char-table).
-2. Replace the composition table with the following one:
-   ``` elisp
-   (33 . ".\\(?:\\(?:!\\|==\\|=\\)\\)") ;; !
-   (35 . ".\\(?:\\(?:[!(:={]\\|###\\|#\\|#\\|\\?\\|\\[\\|_(\\|_\\)\\)") ;; #
-   (36 . ".\\(?:>\\)") ;; $
-   (37 . ".\\(?:%\\)") ;; %
-   (38 . ".\\(?:&\\)") ;; &
-   (42 . ".\\(?:\\(?:[/>]\\|\\*\\*\\|\\*\\)\\)") ;; *
-   (43 . ".\\(?:\\(?:\\+\\+\\|\\+\\|>\\)\\)") ;; +
-   (45 . ".\\(?:\\(?:[|~]\\|-\\(?:-\\|>\\)\\|-\\|<<\\|<\\|>>\\|>\\)\\)") ;; -
-   (46 . ".\\(?:\\(?:-\\|\\.\\(?:\\.\\|<\\)\\|\\.\\|=\\)\\)") ;; .
-   (47 . ".\\(?:\\(?:[>\]\\|\\*\\|//\\|/\\|==\\|=\\)\\)") ;; /
-   (58 . ".\\(?:\\(?:[<=>]\\|::\\|:\\)\\)") ;; :
-   (59 . ".\\(?:;\\)") ;; ;
-   (60 . ".\\(?:\\(?:[:>]\\|!--\\|\\$>\\|\\$\\|\\*>\\|\\*\\|\\+>\\|\\+\\|-\\(?:[<>|]\\|-\\)\\|-\\|/>\\|/\\|<\\(?:[<=]\\|-\\)\\|<\\|=\\(?:[<>|]\\|=>\\|=\\)\\|=\\||\\(?:>\\|||\\||\\)\\||\\|~[>~]\\|~\\)\\)") ;; <
-   (61 . ".\\(?:\\(?:!=\\|/=\\|:=\\|<<\\|=[=>]\\|=\\|>>\\|>\\)\\)") ;; =
-   (62 . ".\\(?:\\(?:->\\|-\\|:\\|=>\\|=\\|>\\(?:[=>]\\|-\\)\\|>\\)\\)") ;; >
-   (63 . ".\\(?:\\(?:[:=]\\|\\.\\|\\?\\)\\)") ;; ?
-   (70 . ".\\(?:l\\)") ;; F
-   (84 . ".\\(?:l\\)") ;; T
-   (91 . ".\\(?:\\(?::]\\||\\)\\)") ;; [
-   (92 . ".\\(?:[/\]\\)") ;; \
-   (94 . ".\\(?:=\\)") ;; ^
-   (95 . ".\\(?:\\(?:_\\||_\\)\\)") ;; _
-   (102 . ".\\(?:l\\)") ;; f
-   (119 . ".\\(?:ww\\)") ;; w
-   (123 . ".\\(?:|\\)") ;; {
-   (124 . ".\\(?:\\(?:[>}]\\|->\\|-\\|=>\\|=\\|]\\||\\(?:[=>]\\|-\\||>\\)\\||\\)\\)") ;; |
-   (126 . ".\\(?:\\(?:[=>@]\\|-\\|~>\\|~\\)\\)") ;; ~
-   ```
+2. Replace the composition table with the one in [ligs.out](ligs.out).
 3. Restart Emacs, open the file `ligs.txt` and check whether the
    ligatures show up correctly.
 
@@ -52,17 +23,14 @@ For those who want to enable (almost) all the ligatures:
 
 In case you want to add new ligatures or remove unwanted ones:
 
-1. Update the file `ligs.txt` by removing the lines with the
-   unwanted ligatures or by adding new ones.
-2. Compile `ligs.hs` with GHC:
+1. Update [ligs.in](ligs.in) by removing the lines with the unwanted
+   ligatures or by adding new ones.
+2. Make sure you have GHC installed and run `make` to compile [ligs.hs](ligs.hs)
+   and obtain the updated composition table:
    ``` bash
-   ghc ligs.hs
+   make
    ```
-3. Run `ligs` to obtain the updated composition table:
-   ``` bash
-   ./ligs
-   ```
-4. Replace the composition table in your `.emacs` file as described
+3. Replace the composition table in your `.emacs` file as described
    in the previous section.
 
 ## What is missing
