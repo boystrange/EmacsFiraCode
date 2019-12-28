@@ -2,9 +2,10 @@
 
 ## What it is
 
-This is a small Haskell program that creates the Emacs composition
-table for the Fira Code font. The original composition table was
-created (by hand, I suppose) by [Sean
+This is a small Haskell program that automatically generates the
+Emacs composition table for the [Fira
+Code](https://github.com/tonsky/FiraCode) font. The original
+composition table was handcrafted by [Sean
 Farley](https://github.com/seanfarley) and extended by [Jason
 Blevins](https://github.com/jrblevin).
 
@@ -44,8 +45,8 @@ For those who want to enable (almost) all the ligatures:
    (124 . ".\\(?:\\(?:->\\|-\\|=>\\|=\\|>\\|]\\||\\(?:-\\|=\\|>\\||>\\)\\||\\|}\\)\\)") ;; |
    (126 . ".\\(?:\\(?:-\\|=\\|>\\|@\\|~>\\|~\\)\\)") ;; ~
    ```
-3. Open the file `ligs.txt` and check whether the ligatures show up
-   correctly.
+3. Restart Emacs and open the file `ligs.txt` and check whether the
+   ligatures show up correctly.
 
 ## Custom setup
 
@@ -63,3 +64,9 @@ In case you want to add new ligatures or remove unwanted ones:
    ```
 4. Replace the composition table in your `.emacs` file as described
    in the previous section.
+
+## TODO
+
+* Generate character groups instead of disjunctions for better
+  efficiency?
+* Generate ligature for hex literals (this has to be added manually)
