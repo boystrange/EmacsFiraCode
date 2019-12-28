@@ -47,8 +47,8 @@ For those who want to enable (almost) all the ligatures:
    (124 . ".\\(?:\\(?:[>}]\\|\\(?:->\\|-\\)\\|\\(?:=>\\|=\\)\\|]\\|\\(?:|\\(?:[=>]\\|-\\||>\\)\\||\\)\\)\\)") ;; |
    (126 . ".\\(?:\\(?:[=>@]\\|-\\|\\(?:~>\\|~\\)\\)\\)") ;; ~
    ```
-3. Restart Emacs, open the file `ligs.txt` and check whether the
-   ligatures show up correctly.
+3. Restart Emacs, open the file [ligs.in](ligs.in) and check whether
+   the ligatures show up correctly.
 
 ## Custom setup
 
@@ -56,11 +56,8 @@ In case you want to add new ligatures or remove unwanted ones:
 
 1. Update [ligs.in](ligs.in) by removing the lines with the unwanted
    ligatures or by adding new ones.
-2. Make sure you have GHC installed and run `make` to compile [ligs.hs](ligs.hs)
-   and obtain the updated composition table:
-   ``` bash
-   make
-   ```
+2. Make sure you have GHC installed and run `make` to compile
+   [ligs.hs](ligs.hs) and obtain the updated composition table.
 3. Replace the composition table in your `.emacs` file as described
    in the previous section.
 
