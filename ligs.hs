@@ -24,7 +24,7 @@
 import Data.Set (Set)
 import qualified Data.Set as Set
 import Data.Char (ord, chr)
-import Data.List (nub, groupBy, intercalate, sort)
+import Data.List (nub, groupBy, intercalate, sort, partition)
 import Control.Monad (forM_)
 
 eqf :: String -> String -> Bool
@@ -45,9 +45,19 @@ split ws = pgs
 shygroup :: String -> String
 shygroup s = "\\\\(?:" ++ s ++ "\\\\)"
 
+charset :: [String] -> String
+charset ws = "[" ++ concat ws ++ "]"
+
 maygroup :: [String] -> String
 maygroup [s] = s
-maygroup ws = shygroup (intercalate "\\\\|" ws)
+maygroup ws | null cs = charset ss
+            | length ss <= 1 = shygroup (intercalate "\\\\|" ws)
+            | otherwise = shygroup (charset ss ++ "\\\\|" ++ intercalate "\\\\|" cs)
+  where
+    (ss, cs) = partition simple ws
+
+    simple [c] = not (c `elem` "-]^")
+    simple _ = False
 
 esc :: Char -> String
 esc c | c `elem` ".*+?[^$" = ['\\', '\\', c]
