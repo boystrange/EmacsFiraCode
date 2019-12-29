@@ -46,7 +46,15 @@ shygroup :: String -> String
 shygroup s = "\\\\(?:" ++ s ++ "\\\\)"
 
 charset :: [String] -> String
-charset ws = "[" ++ concat ws ++ "]"
+charset ws = "[" ++ next (concat ws) ++ "]"
+  where
+    next "" = ""
+    next (c : cs) = range c c cs
+
+    range cb cc (cn : cs) | succ cc == cn = range cb cn cs
+    range cb cc cs | cb == cc = cb : next cs
+                   | succ cb == cc = cb : cc : next cs
+                   | otherwise = cb : '-' : cc : next cs
 
 maygroup :: [String] -> String
 maygroup [s] = s

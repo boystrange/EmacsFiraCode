@@ -30,7 +30,3 @@ In case you want to add new ligatures or remove unwanted ones:
    [ligs.hs](ligs.hs) and obtain the updated composition table.
 3. Go to step 2 in the previous section.
 
-## What is missing
-
-* Ligature for hex literals (this has to be added manually)
-* Possibly more...
