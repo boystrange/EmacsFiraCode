@@ -1,8 +1,8 @@
 
 NAME = ligs
 
-ligs.out: ligs.in $(NAME)
-	./$(NAME) <ligs.in >$@
+fira-code-ligatures.el: ligatures.txt $(NAME)
+	./$(NAME) <$< >$@
 
 $(NAME): ligs.hs
 	ghc $<

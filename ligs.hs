@@ -82,11 +82,16 @@ table ligs = map aux ligs
     aux ((c : cs) : ss) = (ord c, rhs (cs : map tail ss))
 
 putEntry :: (Int, String) -> IO ()
-putEntry (n, s) = putStrLn $ "(" ++ show n ++ " . \"" ++ s ++ "\") ;; " ++ [chr n]
+putEntry (n, s) = putStrLn $ "  (" ++ show n ++ " . \"" ++ s ++ "\") ;; " ++ [chr n]
 
 main :: IO ()
 main = do
   s <- getContents
   let ligs = groupBy eqf (sort $ lines s)
   let tab = table ligs
+  putStrLn "(let ((alist '("
   forM_ tab putEntry
+  putStrLn "             )))\n\
+           \  (dolist (char-regexp alist)\n\
+           \    (set-char-table-range composition-function-table (car char-regexp)\n\
+           \                          `([,(cdr char-regexp) 0 font-shape-gstring]))))"
