@@ -52,9 +52,12 @@ charset ws = "[" ++ next (concat ws) ++ "]"
     next (c : cs) = range c c cs
 
     range cb cc (cn : cs) | succ cc == cn = range cb cn cs
-    range cb cc cs | cb == cc = cb : next cs
-                   | succ cb == cc = cb : cc : next cs
-                   | otherwise = cb : '-' : cc : next cs
+    range cb cc cs | cb == cc = emit cb ++ next cs
+                   | succ cb == cc = emit cb ++ emit cc ++ next cs
+                   | otherwise = emit cb ++ "-" ++ emit cc ++ next cs
+
+    emit '\\' = "\\\\"
+    emit c = [c]
 
 maygroup :: [String] -> String
 maygroup [s] = s
